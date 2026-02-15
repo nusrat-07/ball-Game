@@ -1,17 +1,17 @@
-# 🚗 Snowflake Car Runner Game
+# 🎮 Snowflake Endless Runner Game
 
-A web-based endless car runner game with a Snowflake-powered leaderboard system.
+A web-based endless runner game with a Snowflake-powered leaderboard system.
 
-Players drive, collect coins, increase distance, and store high scores securely in Snowflake using a Node.js backend API.
+Players increase their score by surviving longer, collecting items, and competing for the highest distance on the global leaderboard.
 
 ---
 
 ## 🌟 Features
 
-- 🎮 Endless runner car gameplay
-- 🪙 Coin collection system
+- 🎮 Endless runner gameplay
 - 📏 Distance-based scoring
-- 🏆 Top 10 global leaderboard
+- 🪙 Coin / item collection
+- 🏆 Top 10 leaderboard
 - ❄️ Snowflake cloud database integration
 - 🌐 REST API backend (Node.js + Express)
 - 🔒 Secure environment variable configuration
@@ -22,7 +22,7 @@ Players drive, collect coins, increase distance, and store high scores securely 
 
 ### 🎨 Frontend
 - HTML5 Canvas
-- JavaScript
+- JavaScript (Vanilla JS)
 - CSS3
 
 ### ⚙️ Backend
@@ -40,12 +40,12 @@ Players drive, collect coins, increase distance, and store high scores securely 
 ## 📂 Project Structure
 
 ```
-car/
+project/
 │
 ├── server/
 │   ├── server.js
 │   ├── package.json
-│   ├── .env               # NOT pushed to GitHub
+│   ├── .env              # NOT pushed to GitHub
 │
 ├── index.html
 ├── game.js
@@ -79,7 +79,7 @@ npm install
 
 ### 3️⃣ Configure Environment Variables
 
-Inside the `/server` folder, create a file named:
+Inside `/server` folder create a file:
 
 ```
 .env
@@ -100,9 +100,9 @@ SNOWFLAKE_DATABASE=GAME_DB
 SNOWFLAKE_SCHEMA=PUBLIC
 ```
 
-⚠️ Important:
-- Never push `.env` to GitHub
-- Ensure `.gitignore` contains:
+⚠️ Never push `.env` to GitHub.
+
+Make sure `.gitignore` contains:
 
 ```
 node_modules/
@@ -113,7 +113,7 @@ node_modules/
 
 ## ❄️ Snowflake Setup
 
-Run this inside Snowflake Worksheet:
+Run inside Snowflake:
 
 ```sql
 CREATE DATABASE IF NOT EXISTS GAME_DB;
@@ -132,7 +132,7 @@ CREATE OR REPLACE TABLE SCORES (
 
 ## ▶️ Running the Application
 
-### Start Backend Server
+### Start Backend
 
 Inside `/server`:
 
@@ -140,14 +140,14 @@ Inside `/server`:
 node server.js
 ```
 
-Expected output:
+Expected:
 
 ```
 ✅ Connected to Snowflake
 ✅ API running on http://localhost:3000
 ```
 
-Test connection:
+Test:
 
 ```
 http://localhost:3000/health
@@ -155,10 +155,10 @@ http://localhost:3000/health
 
 ---
 
-### Run Frontend (Game)
+### Run Frontend
 
 Option 1:
-Open `index.html` in your browser.
+Open `index.html`.
 
 Option 2 (Recommended):
 
@@ -167,7 +167,7 @@ npm install -g live-server
 live-server
 ```
 
-Game will open at:
+Game runs at:
 
 ```
 http://127.0.0.1:8080
@@ -177,104 +177,69 @@ http://127.0.0.1:8080
 
 ## 🔌 API Endpoints
 
-### ✅ Health Check
+### Health Check
 ```
 GET /health
 ```
 
----
-
-### 📝 Save Score
+### Save Score
 ```
 POST /score
 ```
 
-Example request body:
+Example:
 
 ```json
 {
   "name": "Player1",
-  "distance": 1200,
-  "coins": 25
+  "distance": 1500,
+  "coins": 30
 }
 ```
 
----
-
-### 🏆 Get Leaderboard
+### Leaderboard
 ```
 GET /leaderboard
 ```
 
-Returns top 10 players ordered by highest distance.
+Returns top 10 players sorted by highest distance.
 
 ---
 
 ## 🔄 How It Works
 
-1. Player plays the game
-2. Distance and coins are tracked in real time
+1. Player starts the game
+2. Score increases based on survival time / collected items
 3. On game over → score sent to backend
-4. Backend inserts score into Snowflake
-5. Leaderboard endpoint fetches top scores
+4. Backend stores score in Snowflake
+5. Leaderboard fetches top scores
 6. Results displayed in modal
 
 ---
 
-## 🔒 Security Best Practices
+## 🔒 Security
 
 - Snowflake credentials stored in `.env`
 - `.env` excluded via `.gitignore`
-- Frontend never directly connects to database
-- All database operations handled by backend API
-
----
-
-## 📊 Database Schema
-
-| Column      | Type      |
-|-------------|-----------|
-| NAME        | STRING    |
-| DISTANCE    | NUMBER    |
-| COINS       | NUMBER    |
-| CREATED_AT  | TIMESTAMP |
+- Frontend never directly connects to Snowflake
+- Backend handles all database operations
 
 ---
 
 ## 🌍 Future Improvements
 
-- Player authentication system
-- Player profiles
-- Daily / Weekly leaderboard
+- Player authentication
+- Personal best tracking
+- Daily leaderboard
 - Cloud deployment (Render / Railway)
 - Frontend hosting (Vercel / Netlify)
-- JWT authentication
-- Docker containerization
-
----
-
-## 🧠 Learning Outcomes
-
-This project demonstrates:
-
-- Full-stack integration
-- Cloud database connectivity
-- REST API development
-- Secure credential management
-- Frontend + backend architecture
-- Real-time game score persistence
+- Real-time leaderboard updates
 
 ---
 
 ## 👩‍💻 Author
 
-**Nusrat**  
+Nusrat  
 GitHub: https://github.com/21mimia  
 
 Built with ❤️ using Snowflake & Node.js
-
----
-
-## 📜 License
-
-This project is open-source and available under the MIT License.
