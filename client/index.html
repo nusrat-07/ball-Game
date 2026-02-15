@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Flappy + Snowflake</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="dot"></div>
+        <span>Flappy</span>
+      </div>
+
+      <div class="stats">
+        <div class="pill">Distance: <b id="uiScore">0</b></div>
+        <div class="pill">Coins: <b id="uiCoins">0</b></div>
+        <div class="pill">Best: <b id="uiBest">0</b></div>
+      </div>
+
+      <div class="actions">
+        <button class="iconBtn" id="btnSound" title="Sound">🔊</button>
+        <button class="iconBtn" id="btnPause" title="Pause">⏸</button>
+        <button class="iconBtn" id="btnBoard" title="Leaderboard">🏆</button>
+      </div>
+    </header>
+
+    <main class="stage">
+      <div class="frame">
+        <canvas id="game"></canvas>
+
+        <div class="overlay" id="overlay">
+          <div class="card">
+            <h1 id="ovTitle">Flappy</h1>
+            <p id="ovText">Tap / Click or press Space to start</p>
+
+            <div class="row">
+              <input id="playerName" class="input" maxlength="24" placeholder="Name (optional)" />
+              <button id="btnStart" class="btn">Start</button>
+            </div>
+
+            <div class="meta">
+              <span>Space / Tap = flap</span>
+              <span>R = restart</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal hidden" id="modal">
+          <div class="modalCard">
+            <div class="modalHead">
+              <h2>Leaderboard</h2>
+              <button class="iconBtn" id="btnClose">✕</button>
+            </div>
+            <div id="board" class="board">
+              <div class="muted">Loading…</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <span class="muted">Tip: tap gently for smoother flight.</span>
+    </footer>
+  </div>
+
+  <script src="game.js" defer></script>
+</body>
+</html>
